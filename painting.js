@@ -6,6 +6,8 @@ const colorOptions = Array.from(
   document.getElementsByClassName("color-option")
 );
 const modeBtn = document.querySelector("#mode-btn");
+const destroyBtn = document.querySelector("#destroy-btn");
+const eraserBtn = document.querySelector("#eraser-btn");
 
 canvas.width = 800;
 canvas.height = 800;
@@ -74,6 +76,17 @@ function onCanvasClick() {
   }
 }
 
+function onDestroyClick() {
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(0, 0, 800, 800);
+}
+
+function onEraserClick() {
+  ctx.strokeStyle = "#fff";
+  isFilling = false;
+  modeBtn.innerText = "Fill";
+}
+
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", onMouseDown);
 canvas.addEventListener("mouseup", onMouseUp);
@@ -87,3 +100,5 @@ colorOptions.forEach((element) => {
 });
 
 modeBtn.addEventListener("click", onModeClick);
+destroyBtn.addEventListener("click", onDestroyClick);
+eraserBtn.addEventListener("click", onEraserClick);
