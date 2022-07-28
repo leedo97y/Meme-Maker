@@ -79,6 +79,8 @@ function onCanvasClick() {
 function onDestroyClick() {
   ctx.fillStyle = "#fff";
   ctx.fillRect(0, 0, 800, 800);
+  color.value = "black";
+  ctx.strokeStyle = "black";
 }
 
 function onEraserClick() {
