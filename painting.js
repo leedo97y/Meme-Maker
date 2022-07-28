@@ -77,12 +77,14 @@ function onModeClick() {
 }
 
 function onCanvasClick() {
+  // 채우기 모드일 때
   if (isFilling) {
     ctx.fillRect(0, 0, 800, 800);
   }
 }
 
 function onDestroyClick() {
+  // 전부 지우기 버튼 클릭시
   ctx.fillStyle = "#fff";
   ctx.fillRect(0, 0, 800, 800);
   color.value = "black";
@@ -90,6 +92,7 @@ function onDestroyClick() {
 }
 
 function onEraserClick() {
+  // 지우개 모드 버튼 클릭시
   ctx.strokeStyle = "#fff";
   isFilling = false;
   modeBtn.innerText = "Fill";
