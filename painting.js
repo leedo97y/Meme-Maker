@@ -4,17 +4,22 @@ const lineWidth = document.querySelector("#line-width");
 const color = document.querySelector("#color");
 const colorOptions = Array.from(
   document.getElementsByClassName("color-option")
-);
-// colorOptions 배열로 바꾸기
+); // colorOptions 배열로 바꾸기
+// 전체 삭제 모드, 지우개 모드
 const modeBtn = document.querySelector("#mode-btn");
 const destroyBtn = document.querySelector("#destroy-btn");
 const eraserBtn = document.querySelector("#eraser-btn");
+// 파일 등록해서 밈 만들기
+const fileInput = document.querySelector("#file");
+// text 쓰기
+const textInput = document.querySelector("#text");
 
 canvas.width = 800;
 canvas.height = 800;
 
 ctx.lineWidth = lineWidth.value;
 // 붓 크기를 지정하는 line-width range의 값과 context의 크기를 일치시켜줌
+ctx.lineCap = "round"; // 선의 끝 부분을 둥글게 바꿔줌
 
 let isPainting = false;
 let isFilling = false;
@@ -87,8 +92,8 @@ function onDestroyClick() {
   // 전부 지우기 버튼 클릭시
   ctx.fillStyle = "#fff";
   ctx.fillRect(0, 0, 800, 800);
-  color.value = "black";
-  ctx.strokeStyle = "black";
+  color.value = "#000000";
+  ctx.strokeStyle = "#000000";
 }
 
 function onEraserClick() {
@@ -98,11 +103,37 @@ function onEraserClick() {
   modeBtn.innerText = "Fill";
 }
 
+function onFileChange(event) {
+  const file = event.target.files[0];
+  // get choosen file
+  const url = URL.createObjectURL(file);
+  // make choosen file's url
+  const image = new Image();
+  image.src = url;
+  // make image, and add src by using url
+  image.onload = function () {
+    ctx.drawImage(image, 0, 0, 800, 800);
+    fileInput.value = null;
+  };
+}
+
+function onDoubleClick(event) {
+  const text = textInput.value;
+  if (text !== "") {
+    ctx.save();
+    ctx.lineWidth = 1;
+    ctx.font = "58px serif";
+    ctx.fillText(text, event.offsetX, event.offsetY);
+    ctx.restore();
+  }
+}
+
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", onMouseDown);
 canvas.addEventListener("mouseup", onMouseUp);
 canvas.addEventListener("mouseleave", cancelPainting);
 canvas.addEventListener("click", onCanvasClick);
+canvas.addEventListener("dblclick", onDoubleClick);
 
 lineWidth.addEventListener("change", onLineWidthChange);
 color.addEventListener("change", onColorChange);
@@ -114,3 +145,5 @@ colorOptions.forEach((element) => {
 modeBtn.addEventListener("click", onModeClick);
 destroyBtn.addEventListener("click", onDestroyClick);
 eraserBtn.addEventListener("click", onEraserClick);
+
+fileInput.addEventListener("change", onFileChange);
