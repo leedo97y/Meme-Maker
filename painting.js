@@ -134,6 +134,7 @@ canvas.addEventListener("mouseup", onMouseUp);
 canvas.addEventListener("mouseleave", cancelPainting);
 canvas.addEventListener("click", onCanvasClick);
 canvas.addEventListener("dblclick", onDoubleClick);
+// canvas를 더블클릭시 텍스트 input에 입력한 텍스트가 canvas에 나타나게 해줌
 
 lineWidth.addEventListener("change", onLineWidthChange);
 color.addEventListener("change", onColorChange);
