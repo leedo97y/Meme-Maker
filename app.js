@@ -44,6 +44,7 @@ context.arc(270, 125, 3.5, 0, 2 * Math.PI);
 context.arc(300, 125, 3.5, 0, 2 * Math.PI);
 context.fill();
 
+// 원 만들고 채우기
 context.beginPath();
 context.fillStyle = "tomato";
 context.arc(285, 150, 8, 2 * Math.PI, Math.PI);
