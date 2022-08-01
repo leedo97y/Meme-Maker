@@ -1,7 +1,19 @@
+@import "reset.css";
+
+body {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: gainsboro;
+  padding: 20px;
+}
+
 canvas {
   width: 800px;
   height: 800px;
-  border: 5px solid black;
+  background-color: white;
+  border-radius: 10px;
 }
 
 body {
@@ -10,8 +22,98 @@ body {
   align-items: center;
 }
 
+/* whole color div styling */
+.allcolor-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+/* color picker styling */
+#color {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+#color::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
+#color::-moz-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
+/* chosen color styling */
 .color-option {
   width: 50px;
   height: 50px;
   cursor: pointer;
+  border-radius: 50%;
+  transition: transform ease-in-out 0.3s;
+}
+
+.color-option:hover {
+  transform: scale(1.2);
+}
+
+/* whole button div styling */
+.btns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 개별버튼 디자인 */
+button,
+label {
+  all: unset;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #1b75fc;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0px;
+  font-weight: 400;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: opacity linear 0.3s;
+  width: 230px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+#text {
+  all: unset;
+  padding: 10px 0px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 400;
+  background-color: white;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+#text::placeholder {
+  color: rgb(176, 176, 176);
+  font-weight: 400;
+}
+
+#file {
+  display: none;
+}
+
+.hidden {
+  display: none;
 }
