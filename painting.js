@@ -13,6 +13,8 @@ const eraserBtn = document.querySelector("#eraser-btn");
 const fileInput = document.querySelector("#file");
 // text 쓰기
 const textInput = document.querySelector("#text");
+// save button
+const saveBtn = document.querySelector("#save");
 
 canvas.width = 800;
 canvas.height = 800;
@@ -128,6 +130,15 @@ function onDoubleClick(event) {
   }
 }
 
+function onSaveClick() {
+  const url = canvas.toDataURL();
+  // a tag has download function
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "myDrawing.png";
+  a.click();
+}
+
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", onMouseDown);
 canvas.addEventListener("mouseup", onMouseUp);
@@ -148,3 +159,4 @@ destroyBtn.addEventListener("click", onDestroyClick);
 eraserBtn.addEventListener("click", onEraserClick);
 
 fileInput.addEventListener("change", onFileChange);
+saveBtn.addEventListener("click", onSaveClick);
