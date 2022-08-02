@@ -5,7 +5,7 @@ body {
   gap: 20px;
   justify-content: space-between;
   align-items: flex-start;
-  background-color: gainsboro;
+  background-color: #eaeaea;
   padding: 20px;
 }
 
@@ -68,6 +68,7 @@ body {
 
 /* whole button div styling */
 .btns {
+  margin-bottom: 100px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -142,4 +143,21 @@ p {
   word-spacing: 1.5px;
   letter-spacing: 0.5px;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.12);
+}
+
+#font-size {
+  width: 205px;
+  height: 25px;
+  border: none;
+  border-radius: 8px;
+  padding: 3px 15px;
+  font-weight: 400;
+  font-size: 14px;
+  word-spacing: 1.5px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+#font-size::placeholder {
+  color: rgb(176, 176, 176);
 }
