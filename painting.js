@@ -15,6 +15,7 @@ const fileInput = document.querySelector("#file");
 const textInput = document.querySelector("#text");
 // save button
 const saveBtn = document.querySelector("#save");
+const fontList = document.querySelector("#font-list");
 
 canvas.width = 800;
 canvas.height = 800;
@@ -121,10 +122,11 @@ function onFileChange(event) {
 
 function onDoubleClick(event) {
   const text = textInput.value;
+  const font = fontList.value;
   if (text !== "") {
     ctx.save();
     ctx.lineWidth = 1;
-    ctx.font = "58px serif";
+    ctx.font = `58px ${font}`;
     ctx.fillText(text, event.offsetX, event.offsetY);
     ctx.restore();
   }
@@ -138,6 +140,11 @@ function onSaveClick() {
   a.download = "myDrawing.png";
   a.click();
 }
+
+// function onFontChange(event) {
+//   const fontName = event.target.value;
+//   ctx.font = `58px ${fontName}`;
+// }
 
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", onMouseDown);
