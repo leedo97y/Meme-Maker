@@ -17,6 +17,7 @@ const textInput = document.querySelector("#text");
 const saveBtn = document.querySelector("#save");
 const fontList = document.querySelector("#font-list");
 const fontSize = document.querySelector("#font-size");
+const fontMode = document.querySelector("#font-mode");
 
 canvas.width = 800;
 canvas.height = 800;
@@ -27,6 +28,7 @@ ctx.lineCap = "round"; // 선의 끝 부분을 둥글게 바꿔줌
 
 let isPainting = false;
 let isFilling = false;
+let isClicked = false;
 
 function onMove(event) {
   if (isPainting) {
@@ -125,12 +127,28 @@ function onDoubleClick(event) {
   const text = textInput.value;
   const font = fontList.value;
   const size = fontSize.value;
-  if (text !== "") {
+  if (text !== "" && isClicked === true) {
     ctx.save();
     ctx.lineWidth = 1;
     ctx.font = `${size}px ${font}`;
     ctx.fillText(text, event.offsetX, event.offsetY);
     ctx.restore();
+  } else if (text !== "" && isClicked === false) {
+    ctx.save();
+    ctx.lineWidth = 1;
+    ctx.font = `${size}px ${font}`;
+    ctx.strokeText(text, event.offsetX, event.offsetY);
+    ctx.restore();
+  }
+}
+
+function onTextModeClick() {
+  if (isClicked) {
+    isClicked = false;
+    fontMode.innerText = "Fill Font";
+  } else {
+    isClicked = true;
+    fontMode.innerText = "Stroke Font";
   }
 }
 
@@ -164,3 +182,4 @@ eraserBtn.addEventListener("click", onEraserClick);
 
 fileInput.addEventListener("change", onFileChange);
 saveBtn.addEventListener("click", onSaveClick);
+fontMode.addEventListener("click", onTextModeClick);
